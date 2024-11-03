@@ -13,23 +13,154 @@
 ---
 
 ## 1. Héritage en C++
+Qu'est-ce que l'héritage ?
 
-L'**héritage** permet de créer une nouvelle classe qui hérite des attributs et méthodes d'une classe existante. Cela permet de réutiliser du code et de modeler des relations entre les classes. La classe qui hérite est appelée **classe dérivée**, tandis que la classe de laquelle elle hérite est appelée **classe de base**.
+L'héritage est un principe fondamental de la programmation orientée objet qui permet à une classe (appelée classe dérivée ou sous-classe) d'hériter des propriétés (attributs et méthodes) d'une autre classe (appelée classe de base ou super-classe). Cela permet de réutiliser le code et de créer des hiérarchies de classes, facilitant ainsi la gestion des objets et leur extension.
+Avantages de l'héritage
 
-### Syntaxe de l'héritage :
+    Réutilisation du code : Vous pouvez réutiliser les méthodes et les attributs de la classe de base dans la classe dérivée.
+    Extensibilité : Les classes dérivées peuvent ajouter de nouvelles fonctionnalités ou modifier celles de la classe de base.
+    Organisation : L'héritage permet de structurer le code en hiérarchies, rendant le programme plus clair et plus facile à maintenir.
 
-```cpp
-class ClasseDeBase {
-    // Membres de la classe de base
+Types d'héritage
+
+L'héritage peut être classé en trois types principaux selon la manière dont les membres de la classe de base sont accessibles dans la classe dérivée : public, protected et private.
+1. Héritage public
+
+    Accessibilité :
+        Les membres publics de la classe de base deviennent des membres publics de la classe dérivée.
+        Les membres protégés de la classe de base deviennent des membres protégés de la classe dérivée.
+        Les membres privés de la classe de base restent inaccessibles à la classe dérivée.
+
+Exemple :
+
+cpp
+
+#include <iostream>
+
+class Base {
+public:
+    void afficherPublic() { std::cout << "Membre public de Base\n"; }
+protected:
+    void afficherProtege() { std::cout << "Membre protégé de Base\n"; }
+private:
+    void afficherPrive() { std::cout << "Membre privé de Base\n"; }
 };
 
-class ClasseDerivee : public ClasseDeBase {
-    // Membres spécifiques à la classe dérivée
+class Derivee : public Base {
+public:
+    void afficher() {
+        afficherPublic();   // Accessible
+        afficherProtege();  // Accessible
+        // afficherPrive(); // Inaccessible, ca causerait une erreur
+    }
 };
-```
 
-L'héritage public (`: public ClasseDeBase`) est le type d'héritage le plus couramment utilisé. Il signifie que les membres publics de la classe de base sont accessibles directement depuis la classe dérivée.
+int main() {
+    Derivee d;
+    d.afficher();
+    return 0;
+}
 
+Sortie :
+
+arduino
+
+Membre public de Base
+Membre protégé de Base
+
+2. Héritage protégé
+
+    Accessibilité :
+        Les membres publics et protégés de la classe de base deviennent des membres protégés de la classe dérivée.
+        Les membres privés de la classe de base restent inaccessibles à la classe dérivée.
+
+Exemple :
+
+cpp
+
+class Base {
+public:
+    void afficherPublic() { std::cout << "Membre public de Base\n"; }
+protected:
+    void afficherProtege() { std::cout << "Membre protégé de Base\n"; }
+private:
+    void afficherPrive() { std::cout << "Membre privé de Base\n"; }
+};
+
+class Derivee : protected Base {
+public:
+    void afficher() {
+        afficherPublic();   // Accessible
+        afficherProtege();  // Accessible
+        // afficherPrive(); // Inaccessible
+    }
+};
+
+int main() {
+    Derivee d;
+    d.afficher();
+    // d.afficherPublic(); // Inaccessible, ca causerait une erreur
+    return 0;
+}
+
+Sortie :
+
+arduino
+
+Membre public de Base
+Membre protégé de Base
+
+3. Héritage privé
+
+    Accessibilité :
+        Les membres publics et protégés de la classe de base deviennent des membres privés de la classe dérivée.
+        Les membres privés de la classe de base restent inaccessibles à la classe dérivée.
+
+Exemple :
+
+cpp
+
+class Base {
+public:
+    void afficherPublic() { std::cout << "Membre public de Base\n"; }
+protected:
+    void afficherProtege() { std::cout << "Membre protégé de Base\n"; }
+private:
+    void afficherPrive() { std::cout << "Membre privé de Base\n"; }
+};
+
+class Derivee : private Base {
+public:
+    void afficher() {
+        afficherPublic();   // Accessible
+        afficherProtege();  // Accessible
+        // afficherPrive(); // Inaccessible
+    }
+};
+
+int main() {
+    Derivee d;
+    d.afficher();
+    // d.afficherPublic(); // Inaccessible, ca causerait une erreur
+    return 0;
+}
+
+Sortie :
+
+arduino
+
+Membre public de Base
+Membre protégé de Base
+
+Résumé des types d'héritage
+Type d'héritage	Membre public	Membre protégé	Membre privé
+Héritage public	Public	Protégé	Inaccessible
+Héritage protégé	Protégé	Protégé	Inaccessible
+Héritage privé	Privé	Privé	Inaccessible
+Conclusion
+
+L'héritage en C++ est un outil puissant qui facilite la réutilisation du code et l'organisation des programmes. Le choix du type d'héritage (public, protected ou private) influence la façon dont les membres de la classe de base sont accessibles dans la classe dérivée. Il est donc essentiel de choisir le type approprié en fonction des besoins de votre conception.
 ---
 
 ## 2. Exemple d'Héritage
