@@ -207,7 +207,3 @@ int main() {
 1. Créez une interface `Affichable` avec une méthode `afficher`.
 2. Créez une classe `Document` et une classe `Image` qui implémentent `Affichable`.
 3. Dans chaque classe, redéfinissez `afficher` pour afficher un message unique, puis testez en utilisant des pointeurs vers `Affichable`.
-
----
-
-```
