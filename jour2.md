@@ -42,18 +42,12 @@ L'héritage peut être classé en trois types principaux selon la manière dont 
 class Base {
 public:
     void afficherPublic() { std::cout << "Membre public de Base\n"; }
-protected:
-    void afficherProtege() { std::cout << "Membre protégé de Base\n"; }
-private:
-    void afficherPrive() { std::cout << "Membre privé de Base\n"; }
 };
 
 class Derivee : public Base {
 public:
     void afficher() {
         afficherPublic();   // Accessible
-        afficherProtege();  // Accessible
-        // afficherPrive(); // Inaccessible, ca causerait une erreur
     }
 };
 
@@ -67,7 +61,6 @@ int main() {
 **Sortie** :
 ```
 Membre public de Base
-Membre protégé de Base
 ```
 
 #### 2. Héritage protégé
@@ -84,8 +77,6 @@ public:
     void afficherPublic() { std::cout << "Membre public de Base\n"; }
 protected:
     void afficherProtege() { std::cout << "Membre protégé de Base\n"; }
-private:
-    void afficherPrive() { std::cout << "Membre privé de Base\n"; }
 };
 
 class Derivee : protected Base {
@@ -93,14 +84,12 @@ public:
     void afficher() {
         afficherPublic();   // Accessible
         afficherProtege();  // Accessible
-        // afficherPrive(); // Inaccessible
     }
 };
 
 int main() {
     Derivee d;
     d.afficher();
-    // d.afficherPublic(); // Inaccessible, ca causerait une erreur
     return 0;
 }
 ```
