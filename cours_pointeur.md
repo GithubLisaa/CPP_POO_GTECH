@@ -192,3 +192,55 @@ Fuites de mémoire : Oublier de libérer la mémoire allouée dynamiquement.
 Déréférencement d'un pointeur non initialisé : Utiliser un pointeur sans assignation initiale.
 
 Pointeur pendu (dangling pointer) : Un pointeur qui pointe vers une mémoire libérée, causant un comportement indéfini.
+
+
+---
+
+## Exercices Pratiques sur les Pointeurs en C++
+
+### Exercice 1 : Gestion dynamique de mémoire avec `unique_ptr`
+
+**Contexte :** Vous travaillez sur une application de gestion d'inventaire pour une bibliothèque. Vous devez créer des objets représentant des livres, chaque livre ayant un titre et un nombre de pages. Chaque livre doit être géré dynamiquement, mais sans risque de fuite de mémoire.
+
+**Objectif :**
+1. Créez une classe `Livre` avec deux attributs : `titre` (chaîne de caractères) et `pages` (entier).
+2. Dans la fonction `main`, allouez dynamiquement deux livres en utilisant `std::unique_ptr`.
+3. Assignez des valeurs aux attributs des livres.
+4. Affichez les informations de chaque livre.
+
+**Contraintes :**
+- Utilisez `std::unique_ptr` pour gérer chaque livre.
+- Pas besoin de libérer explicitement la mémoire, `unique_ptr` doit s’en charger automatiquement.
+
+---
+
+### Exercice 2 : Gestion de tableaux dynamiques avec `new` et `delete`
+
+**Contexte :** Vous développez une fonctionnalité de statistiques qui prend en entrée un tableau dynamique de notes d'étudiants pour calculer la moyenne. Le nombre de notes est saisi par l’utilisateur, et vous devez gérer la mémoire dynamique pour stocker ces notes.
+
+**Objectif :**
+1. Demandez à l'utilisateur d'entrer le nombre de notes.
+2. Allouez dynamiquement un tableau d’entiers de cette taille.
+3. Demandez à l'utilisateur de saisir chaque note dans le tableau.
+4. Calculez et affichez la moyenne des notes.
+5. Libérez la mémoire du tableau.
+
+**Contraintes :**
+- Utilisez `new` et `delete[]` pour allouer et libérer la mémoire.
+
+---
+
+### Exercice 3 : Gestion de la mémoire partagée avec `shared_ptr` et `weak_ptr`
+
+**Contexte :** Vous développez un jeu vidéo avec des personnages. Chaque personnage peut avoir un « allié » (un autre personnage) et chaque personnage peut également être l’allié d’un autre. Cela peut facilement créer des références circulaires.
+
+**Objectif :**
+1. Créez une classe `Personnage` avec un attribut `nom` (chaîne de caractères) et un attribut `std::weak_ptr<Personnage> allié`.
+2. Dans `main`, créez deux personnages (`p1` et `p2`) avec des noms différents.
+3. Assignez `p2` comme allié de `p1`, et `p1` comme allié de `p2`.
+4. Affichez le nom de l'allié de chaque personnage sans provoquer de fuite de mémoire grâce à `weak_ptr`.
+
+**Contraintes :**
+- Utilisez `std::shared_ptr` pour chaque personnage principal et `std::weak_ptr` pour les alliances.
+
+---
