@@ -29,9 +29,10 @@ Un pointeur doit être initialisé avec l’adresse d’une variable, sinon il c
 
 L'opérateur & renvoie l’adresse mémoire d’une variable.
 
+```cpp
 int x = 5;
 int* p = &x; // 'p' stocke l'adresse de 'x'
-
+```
 
 ---
 
@@ -39,10 +40,11 @@ int* p = &x; // 'p' stocke l'adresse de 'x'
 
 L'opérateur * devant un pointeur permet d'accéder à la valeur stockée à l’adresse pointée.
 
+```cpp
 int x = 5;
 int* p = &x;
 cout << *p << endl; // Affiche la valeur de 'x', donc 5
-
+```
 
 ---
 
@@ -50,8 +52,9 @@ cout << *p << endl; // Affiche la valeur de 'x', donc 5
 
 Un pointeur nul ne pointe vers aucune adresse valide. Utilisez nullptr pour indiquer qu'un pointeur est nul.
 
+```cpp
 int* p = nullptr; // 'p' est initialisé à nullptr
-
+```
 
 ---
 
@@ -61,26 +64,31 @@ a) Pointeurs constants
 
 Un pointeur constant ne peut pas changer l’adresse vers laquelle il pointe.
 
+```cpp
 int x = 10;
 int y = 20;
 int* const p = &x; // 'p' est un pointeur constant
 p = &y; // Erreur
+```
 
 b) Pointeurs vers des constantes
 
 Un pointeur vers une constante peut changer d’adresse mais ne peut modifier la valeur pointée.
 
+```cpp
 const int x = 10;
 const int* p = &x; // 'p' est un pointeur vers une constante
 *p = 20; // Erreur
+```
 
 c) Pointeur constant vers une constante
 
 Ce pointeur ne peut ni changer d’adresse ni modifier la valeur pointée.
 
+```cpp
 const int x = 10;
 const int* const p = &x; // 'p' est un pointeur constant vers une constante
-
+```
 
 ---
 
@@ -88,13 +96,14 @@ const int* const p = &x; // 'p' est un pointeur constant vers une constante
 
 Le nom d’un tableau est un pointeur vers son premier élément. On peut utiliser l’arithmétique des pointeurs pour parcourir le tableau.
 
+```cpp
 int arr[] = {10, 20, 30};
 int* p = arr; // 'p' pointe vers le premier élément de 'arr'
 
 cout << *p << endl;       // Affiche 10
 cout << *(p + 1) << endl;  // Affiche 20
 cout << *(p + 2) << endl;  // Affiche 30
-
+```
 
 ---
 
@@ -102,6 +111,7 @@ cout << *(p + 2) << endl;  // Affiche 30
 
 Les pointeurs permettent de passer des arguments par référence aux fonctions.
 
+```cpp
 void increment(int* p) {
     (*p)++;
 }
@@ -112,7 +122,7 @@ int main() {
     cout << x << endl; // Affiche 6
     return 0;
 }
-
+```
 
 ---
 
@@ -120,6 +130,7 @@ int main() {
 
 Utilisez new pour allouer de la mémoire dynamiquement et delete pour la libérer.
 
+```cpp
 int* p = new int;   // Alloue dynamiquement un entier
 *p = 10;
 
@@ -131,7 +142,7 @@ arr[0] = 1;
 arr[1] = 2;
 
 delete[] arr;       // Libère la mémoire du tableau
-
+```
 
 ---
 
@@ -143,8 +154,10 @@ a) std::unique_ptr
 
 Pointeur exclusif, gérant une seule ressource qui est libérée automatiquement lorsqu'il est détruit.
 
+```cpp
 std::unique_ptr<int> p = std::make_unique<int>(10);
 cout << *p << endl; // Affiche 10
+```
 
 Utilisez unique_ptr pour les objets qui ne seront partagés par aucune autre instance. On ne peut pas copier un unique_ptr, mais on peut le transférer avec std::move.
 
@@ -152,8 +165,10 @@ b) std::shared_ptr
 
 Pointeur partagé, plusieurs shared_ptr peuvent partager la même ressource, libérée quand le dernier shared_ptr est détruit.
 
+```cpp
 std::shared_ptr<int> p1 = std::make_shared<int>(10);
 std::shared_ptr<int> p2 = p1; // p2 partage la même ressource que p1
+```
 
 Le shared_ptr utilise un compteur de référence pour suivre combien d'instances partagent la ressource.
 
@@ -161,9 +176,10 @@ c) std::weak_ptr
 
 Pointeur qui fonctionne avec shared_ptr pour référencer un objet sans en modifier le compteur de référence. Utile pour éviter les cycles de référence.
 
+```cpp
 std::shared_ptr<int> p1 = std::make_shared<int>(10);
 std::weak_ptr<int> wp = p1; // Référence sans compter
-
+```
 
 ---
 
