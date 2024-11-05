@@ -19,7 +19,7 @@ Pour déclarer un pointeur, on utilise `*` après le type de la variable qu’il
 int* p1;     // Pointeur vers un entier
 double* p2;  // Pointeur vers un double
 char* p3;    // Pointeur vers un char
-
+```
 Un pointeur doit être initialisé avec l’adresse d’une variable, sinon il contiendra une adresse aléatoire, causant un comportement indéfini.
 
 
