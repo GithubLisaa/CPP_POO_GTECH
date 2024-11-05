@@ -83,6 +83,19 @@ public:
         }
     }
 };
+
+int main() {
+    LinkedList list;
+    list.insertAtHead(3);
+    list.insertAtTail(5);
+    list.insertAtTail(10);
+    list.display();
+
+    list.deleteNode(5);
+    list.display();
+
+    return 0;
+}
 ```
 
 ### b. Liste Doublement Chaînée
@@ -212,6 +225,21 @@ public:
         display(node->right);
     }
 };
+
+int main() {
+    BinaryTree tree;
+    tree.insert(tree.root, 50);
+    tree.insert(tree.root, 30);
+    tree.insert(tree.root, 70);
+    tree.insert(tree.root, 20);
+    tree.insert(tree.root, 40);
+
+    cout << "In-order traversal: ";
+    tree.inOrderDisplay(tree.root);
+    cout << endl;
+
+    return 0;
+}
 ```
 
 ---
@@ -259,6 +287,21 @@ public:
         }
     }
 };
+
+int main() {
+    HashTable ht(7);
+    ht.insert(10);
+    ht.insert(20);
+    ht.insert(15);
+    ht.insert(7);
+
+    cout << "Hash Table:" << endl;
+    ht.display();
+
+    cout << "Search 10: " << (ht.search(10) ? "Found" : "Not Found") << endl;
+
+    return 0;
+}
 ```
 
 ---
