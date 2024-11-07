@@ -147,7 +147,7 @@ public:
 
     void gestionEntree() {
         char touche;
-        std::cout << "Déplacez le personnage (z:haut, s:bas, q:gauche, d:droite) ou q pour quitter : ";
+        std::cout << "Déplacez le personnage (z:haut, s:bas, q:gauche, d:droite) ou x pour quitter : ";
         std::cin >> touche;
         switch (touche) {
             case 'z': perso.deplacer(0, 1); break;
