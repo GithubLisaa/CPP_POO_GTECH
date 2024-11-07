@@ -164,7 +164,7 @@ public:
     }
 
     void affichage() {
-        system("clear"); // Utilisez "cls" sur Windows
+        system("cls"); 
         perso.afficherPosition();
         ennemi.afficherPosition();
     }
